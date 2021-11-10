@@ -1,0 +1,68 @@
+Liste des états possibles pour 11 allumettes (le joueur 0 commence):
+(Nombre d'allumettes restantes / prochain joueur à jouer)
+(11 0)
+(10 1)
+(9 1)
+(8 1)
+(9 0)
+(8 0)
+(7 0)
+(6 0)
+(5 0)
+(6 1)
+(5 1)
+(4 1)
+(3 1)
+(2 1)
+(4 0)
+(3 0)
+(2 0)
+(1 0)
+(0 0)
+(1 1)
+(0 1)
+
+Liste des actions possibles :
+(1 1)
+(1 2)
+(1 3)
+(0 1)
+(0 2)
+(0 3)
+
+Actions possibles selon l'etat:
+(x 0) -> (0 1) (0 2) (0 3) avec x >= 3
+(2 0) -> (0 1) (0 2)
+(1 0) -> (0 1)
+
+(x 1) -> (1 1) (1 2) (1 3) avec x >= 3
+(2 1) -> (1 1) (1 2)
+(1 1) -> (1 1)
+
+(0 0) aucune action possible
+(1 0) aucune action possible 
+
+Etat initial :
+(11 0)
+
+Etats finals :
+(0 0) -> il ne reste plus d'allumettes : le joueur 1 a gagné
+(0 1) -> il ne reste plus d'allumettes : le joueur 0 a gagné 
+
+Arbre de recherche:
+(11 0)
+(10 1)(9 1) (8 1)
+(9 0) (8 0) (7 0)|(6 0)|(5 0)
+(7 1) (6 1)|(4 1)|(3 1)|
+(7 0) (6 0) (5 0)
+(6 1) (5 1) (4 1)
+(5 0) (4 0) (3 0)
+(4 1) (3 1) (2 1)
+(3 0) (2 0) (1 0)
+(2 1)(1 1)(0 1)
+(1 0) (0 0)
+
+
+
+
+

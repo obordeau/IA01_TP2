@@ -1,0 +1,95 @@
+(setq *etats* '(
+	(11 0)
+	(10 1)
+	(9 1)
+	(8 1)
+	(9 0)
+	(8 0)
+	(7 0)
+	(6 0)
+	(5 0)
+	(6 1)
+	(5 1)
+	(4 1)
+	(3 1)
+	(2 1)
+	(4 0)
+	(3 0)
+	(2 0)
+	(1 0)
+	(0 0)
+	(1 1)
+	(0 1))
+)
+
+(setq *actions* '(
+	(1 1)
+	(1 2)
+	(1 3)
+	(0 1)
+	(0 2)
+	(0 3))
+)
+
+(defun prochain_joueur (etat)
+	(cadr etat))
+
+(defun nb_allumettes_total (etat)
+	(car etat))
+
+(defun joueur_action (action)
+	(car action))
+
+(defun allumettes_a_prelever (action)
+	(cadr action))
+
+(defun actions_possibles (etat)
+	(let ((result NIL))
+		(dolist (action *actions*)
+			(if (eq (prochain_joueur etat) (joueur_action action))
+				(if (>= (nb_allumettes_total etat) (allumettes_a_prelever action))
+					(push action result)
+				)
+			)
+		)
+		result
+	)
+)
+
+(defun successeurs_possibles(etat)
+	(let ((result NIL) (actions (actions_possibles etat)))
+		(dolist (action actions)
+			(push (jouer etat action) result)
+		)
+		result
+	)
+)
+
+
+(defun jouer (etat action)
+	(if (eq (prochain_joueur etat) (joueur_action action))
+		(if (>= (nb_allumettes_total etat) (allumettes_a_prelever action))
+			(if (= (prochain_joueur etat) 1)
+				(list (- (nb_allumettes_total etat) (allumettes_a_prelever action)) 0)
+				(list (- (nb_allumettes_total etat) (allumettes_a_prelever action)) 1)
+			)
+			NIL
+		)
+		NIL
+	)
+)
+
+(defun parcours_profondeur(etat parcours)
+	(push etat parcours)
+	(cond 
+		((EQUAL etat '(0 0)) (print "le Joueur 1 gagne")(print (reverse parcours)))
+		((EQUAL etat '(0 1)) (print "le Joueur 0 gagne")(reverse parcours))
+		(T
+			(let ((succ (successeurs_possibles etat)))
+				(dolist (xx succ)
+					(parcours_profondeur xx parcours)
+				)
+			)
+		)
+	)
+)
