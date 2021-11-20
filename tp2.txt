@@ -3,6 +3,8 @@ Objectif du TP : résoudre le jeu des allumettes grâce au parcours d'un ensembl
 1) On choisit la représentation suivante pour les états : (Nombre d'allumettes restantes / Prochain joueur à jouer)
 On suppose que le joueur 0 commence et que le jeu se joue avec 11 allumettes iniiales.
 Liste des états possibles pour 11 allumettes (le joueur 0 commence):
+Liste des états possibles pour 11 allumettes (le joueur 0 commence):
+(Nombre d'allumettes restantes / prochain joueur à jouer)
 (11 0)
 (10 1)
 (9 1)
@@ -27,6 +29,7 @@ Liste des états possibles pour 11 allumettes (le joueur 0 commence):
 (0 1)
 
 2) Liste des actions possibles sous la forme (Joueur / Nombre d'alumettes prélevées) :
+Liste des actions possibles :
 (1 1)
 (1 2)
 (1 3)
@@ -47,6 +50,7 @@ Actions possibles selon l'etat:
 (1 0) aucune action possible 
 
 3) Sachant que le joueur 0 commence l'état initial est :
+Etat initial :
 (11 0)
 
 Etats finals :
@@ -79,5 +83,7 @@ La fonction jouer applique simplement une action donnée à un état donné. On 
 Enfin la fonction successeurs_possibles prend en argument un état et, grâce aux deux fonction précédentes, renvoie la liste de tous les états qui découlent de l'état donné en appliquant chacunes des actions disponibles.
 
 Pour les différents parcours, nous avons réalisé plusieurs fonctions : un parcours en profondeur qui renvoie l'ensemble de tous les chemins menant à l'état gagnant recherché, un second parcours en profondeur qui renvoie le premier chemin trouvé et enfin un parcours en largeur qui renvoie lui-aussi le premier parcours trouvé.
+
+
 
 
