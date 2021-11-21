@@ -19,6 +19,14 @@
 (defun allumettes_a_prelever (action)
 	(cadr action))
 
+(defun etat_gagnant (x)
+	(cond 
+		((= x 0) (return-from etat_gagnant '(0 1)))
+		((= x 1) (return-from etat_gagnant '(0 0)))
+		(T NIL)
+		)
+  )
+
 (defun actions_possibles (etat)
 	(let ((result NIL))
 		(dolist (action *actions*)
@@ -32,24 +40,6 @@
 	)
 )
 
-(defun etat_gagnant (x)
-	(cond 
-		((= x 0) (return-from etat_gagnant '(0 1)))
-		((= x 1) (return-from etat_gagnant '(0 0)))
-		(T NIL)
-		)
-	)
-
-(defun successeurs_possibles(etat)
-	(let ((result NIL) (actions (actions_possibles etat)))
-		(dolist (action actions)
-			(push (jouer etat action) result)
-		)
-		result
-	)
-)
-
-
 (defun jouer (etat action) ;;applique l'action voulue a un etat
 	(if (eq (prochain_joueur etat) (joueur_action action)) ;; on verifie que c'est au bon joueur de jouer
 		(if (>= (nb_allumettes_total etat) (allumettes_a_prelever action)) ;; et que le nombre d'allumettes total est suffisant
@@ -62,6 +52,15 @@
 		NIL
 	)
   )
+
+(defun successeurs_possibles(etat)
+	(let ((result NIL) (actions (actions_possibles etat)))
+		(dolist (action actions)
+			(push (jouer etat action) result)
+		)
+		result
+	)
+)
 
 (defun affichage (parcours)
 	(let ((precedent (pop parcours)) (dernier))
